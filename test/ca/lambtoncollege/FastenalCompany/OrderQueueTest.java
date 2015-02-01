@@ -217,5 +217,36 @@ public class OrderQueueTest {
         assertTrue(whetherThrow);
     }
     
-
+    @Test
+    public void testOrderReportWithNoOrders() {
+        OrderQueue orderQueue = new OrderQueue();
+        String report = orderQueue.report();
+        System.out.println(report);
+        assertTrue(report.equals(""));
+    }
+    
+    @Test
+    public void testOrderReportToJsonWithOrders() {
+        OrderQueue orderQueue = new OrderQueue();
+        for(int i=1;i<7;i++){
+            Order order = new Order("CUST0000"+i, "ABC Construction"+i);
+            order.addPurchase(new Purchase("%d"+i, i));
+            orderQueue.arrive(order);        
+        }
+        Order order = orderQueue.next();
+        orderQueue.process(order);
+        orderQueue.fulfill(order);
+        String report = orderQueue.report();
+        String expResult = "{\"orders\":[{customerId : CUST00006, customerName : ABC Construction6,"
+                + " timeRecevied : "+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())
+                +", timeProcessed : , timeFulfilled : , purchase : [{ productID : 2, quantity : 2 }],"
+                + " note : },{customerID : C00001, customerName : Fast and Light1, timeRecevied : "
+                +new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())
+                +", timeProcessed : "+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())
+                +", timeFulfilled : "+new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS").format(new Date())
+                +", purchase : [{ productID : 1, quantity : 1 }], note : }]}";
+        System.out.println(expResult);
+        System.out.println(report);
+        assertEquals(expResult, report);
+    }
 }
