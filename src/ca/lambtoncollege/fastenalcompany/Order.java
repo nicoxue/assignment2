@@ -6,6 +6,8 @@
 
 package ca.lambtoncollege.fastenalcompany;
 
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -13,79 +15,82 @@ import java.util.List;
  * @author shitong zhao <alpseinstein@gmail.com>
  */
 public class Order {
-    private Customer customer;
-    private String timeRecevied;
-    private String timeProcessed;
-    private String timeFulfilled;
-    private List<Purchase> purchase;
-    private String note;
+    private String customerId;
+    private String customerName;
+    private Date timeReceived;
+    private Date timeProcessed;
+    private Date timeFulfilled;
+    private List<Purchase> listOfPurchases = new ArrayList<>();
+    private String notes;
 
     public Order() {
     }
-
-    public Order(Customer customer, String timeRecevied, String timeProcessed, String timeFulfilled, List<Purchase> purchase, String note) {
-        this.customer = customer;
-        this.timeRecevied = timeRecevied;
-        this.timeProcessed = timeProcessed;
-        this.timeFulfilled = timeFulfilled;
-        this.purchase = purchase;
-        this.note = note;
+    
+    
+    public Order(String customerId, String customerName) {
+        this.customerId = customerId;
+        this.customerName = customerName;
+    }
+    
+    public void addPurchase(Purchase p) {
+        listOfPurchases.add(p);
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public String getCustomerId() {
+        return customerId;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setCustomerId(String customerId) {
+        this.customerId = customerId;
     }
 
-    public String getTimeRecevied() {
-        return timeRecevied;
+    public String getCustomerName() {
+        return customerName;
     }
 
-    public void setTimeRecevied(String timeRecevied) {
-        this.timeRecevied = timeRecevied;
+    public void setCustomerName(String customerName) {
+        this.customerName = customerName;
     }
 
-    public String getTimeProcessed() {
+    public Date getTimeReceived() {
+        return timeReceived;
+    }
+
+    public void setTimeReceived(Date timeReceived) {
+        this.timeReceived = timeReceived;
+    }
+
+    public Date getTimeProcessed() {
         return timeProcessed;
     }
 
-    public void setTimeProcessed(String timeProcessed) {
+    public void setTimeProcessed(Date timeProcessed) {
         this.timeProcessed = timeProcessed;
     }
 
-    public String getTimeFulfilled() {
+    public Date getTimeFulfilled() {
         return timeFulfilled;
     }
 
-    public void setTimeFulfilled(String timeFulfilled) {
+    public void setTimeFulfilled(Date timeFulfilled) {
         this.timeFulfilled = timeFulfilled;
     }
 
-    public List<Purchase> getPurchase() {
-        return purchase;
+    public List<Purchase> getListOfPurchases() {
+        return listOfPurchases;
     }
 
-    public void setPurchase(List<Purchase> purchase) {
-        this.purchase = purchase;
+    public void setListOfPurchases(List<Purchase> listOfPurchases) {
+        this.listOfPurchases = listOfPurchases;
     }
 
-    public String getNote() {
-        return note;
+    public String getNotes() {
+        return notes;
     }
 
-    public void setNote(String note) {
-        this.note = note;
+    public void setNotes(String notes) {
+        this.notes = notes;
     }
-
-    @Override
-    public String toString() {
-        if(timeRecevied==null||timeRecevied.isEmpty())
-            return "ERROR:No TimeRecevied";
-        else
-            return "Order{" + "customer=" + customer + ", timeRecevied=" + timeRecevied + ", timeProcessed=" + timeProcessed + ", timeFulfilled=" + timeFulfilled + ", purchase=" + purchase + ", note=" + note + '}';
-    }
- 
+    
+    
 }

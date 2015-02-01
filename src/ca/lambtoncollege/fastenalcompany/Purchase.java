@@ -11,34 +11,31 @@ package ca.lambtoncollege.fastenalcompany;
  * @author JIAJUN XUE <nicoxue0324@gmail.com>
  */
 public class Purchase {
-    private int ProductID,Quantity;
-    
-    public Purchase(){
-    }
-    
-    public Purchase(int ProductID, int Quantity) {
-        this.ProductID = ProductID;
-        this.Quantity = Quantity;
+    private String productId;
+    private int quantity;
+
+    public Purchase() {
     }
 
-    public int getProductID() {
-        return ProductID;
+    
+    public Purchase(String productId, int quantity) {
+        this.productId = productId;
+        this.quantity = quantity;
+    }
+    
+    public String getProductId() {
+        return productId;
+    }
+
+    public void setProductId(String productId) {
+        this.productId = productId;
     }
 
     public int getQuantity() {
-        return Quantity;
+        return quantity;
     }
 
-    public void setProductID(int ProductID) {
-        this.ProductID = ProductID;
-    }
-
-    public void setQuantity(int Quantity) {
-        this.Quantity = Quantity;
-    }
-    
-    @Override
-    public String toString(){
-        return "productID :"+ProductID +", quantity :"+Quantity;
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }
